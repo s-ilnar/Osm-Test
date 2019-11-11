@@ -100,23 +100,24 @@ public class SnapsShotAdapter extends RecyclerView.Adapter<SnapsShotAdapter.Task
 
     private void download() {
         MapView mapView = new MapView(context);
-
         Polyline trackPolyline = new Polyline(mapView);
         trackPolyline.setColor(ContextCompat.getColor(context, R.color.colorAccent));
         trackPolyline.setWidth(5f);
         trackPolyline.setGeodesic(true);
         trackPolyline.getPaint().setStrokeCap(Paint.Cap.ROUND);
 
-        trackPolyline.addPoint(new GeoPoint(55.669095d, 52.319515d));
-        trackPolyline.addPoint(new GeoPoint(55.684386, 52.347261));
-        trackPolyline.addPoint(new GeoPoint(55.707427, 52.389842));
-        trackPolyline.addPoint(new GeoPoint(55.706186, 52.395886));
-        trackPolyline.addPoint(new GeoPoint(55.687645, 52.426517));
 
-        double maxLat = 55.669095d;
-        double maxLong = 52.319515d;
-        double minLat = 55.669095d;
-        double minLong = 52.319515d;
+        trackPolyline.addPoint(new GeoPoint(56.121537, 47.431048));
+        trackPolyline.addPoint(new GeoPoint(56.118960, 47.464093));
+        trackPolyline.addPoint(new GeoPoint(56.117666, 47.479457));
+        trackPolyline.addPoint(new GeoPoint(56.116443, 47.482246));
+        trackPolyline.addPoint(new GeoPoint(56.114697, 47.485632));
+
+        double maxLat = trackPolyline.getPoints().get(0).getLatitude();
+        double maxLong = trackPolyline.getPoints().get(0).getLongitude();
+        double minLat = trackPolyline.getPoints().get(0).getLatitude();
+        double minLong = trackPolyline.getPoints().get(0).getLongitude();
+
 
         for(GeoPoint polyline : trackPolyline.getPoints()){
             if (maxLat < polyline.getLatitude())

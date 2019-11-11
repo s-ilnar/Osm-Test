@@ -8,6 +8,8 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
+import org.osmdroid.config.Configuration;
+
 import ru.ilnarsoultanov.osmsnapshottest.view.adapter.SnapsShotAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Configuration.getInstance().setUserAgentValue(getPackageName());
         final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         mapWidth = displayMetrics.widthPixels;
         height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
