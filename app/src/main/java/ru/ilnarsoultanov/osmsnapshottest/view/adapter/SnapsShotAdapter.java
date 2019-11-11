@@ -102,7 +102,7 @@ public class SnapsShotAdapter extends RecyclerView.Adapter<SnapsShotAdapter.Task
         MapView mapView = new MapView(context);
 
         Polyline trackPolyline = new Polyline(mapView);
-        trackPolyline.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        trackPolyline.setColor(ContextCompat.getColor(context, R.color.colorAccent));
         trackPolyline.setWidth(5f);
         trackPolyline.setGeodesic(true);
         trackPolyline.getPaint().setStrokeCap(Paint.Cap.ROUND);
@@ -137,7 +137,6 @@ public class SnapsShotAdapter extends RecyclerView.Adapter<SnapsShotAdapter.Task
         //BoundingBox boundingBox = trackPolyline.getBounds();//new BoundingBox(55.785027, 52.517940, 55.666325, 52.241977);
 
         BoundingBox boundingBox = new BoundingBox(maxLat, maxLong, minLat, minLong);
-        GeoPoint center = new GeoPoint(55.729699, 52.431634);
 
         mOverlays.add(trackPolyline);
 
@@ -158,7 +157,7 @@ public class SnapsShotAdapter extends RecyclerView.Adapter<SnapsShotAdapter.Task
                 });
             }
         }, MapSnapshot.INCLUDE_FLAG_UPTODATE, mapTileProvider, mOverlays,
-                new Projection(zoom, mapWidth, mapHeight, center, 0, true, true, 0, 0));
+                new Projection(zoom, mapWidth, mapHeight, boundingBox.getCenterWithDateLine(), 0, true, true, 0, 0));
         // mMapSnapshots.put(key, mapSnapshot);
         new Thread(mapSnapshot).start(); // TODO use AsyncTask, Executors instead?
     }
